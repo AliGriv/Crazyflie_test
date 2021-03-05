@@ -173,7 +173,8 @@ def comThread_run():
     # consider the time delays, something like arming procedures
     global numCopters
     HZ = 100
-
+    loop_counter = 0;
+    com_thread_init_time = 0.0
     # time.sleep(0.1)
     is_any_disconnected = False
     while True:
@@ -183,6 +184,8 @@ def comThread_run():
         #                          ('dmspYawRate' + str(i), commandsToGo[i][3])])
         # debugLogger.saveData()
         # if (trajPlanner.ARM_FLAG == True and trajPlanner.FAILSAFE_FLAG == False and sensor.FAILSAFE_FLAG == False and EStop_failsafe.armingState == ord('1')):
+        if (loop_counter == 0):
+            com_thread_init_time = time.perf_counter()
         if (is_any_disconnected):
             break;
         if (True):
@@ -197,6 +200,10 @@ def comThread_run():
             time.sleep(1/HZ)
         else:
             break
+        loop_counter = loop_counter + 1
+        if (loop_counter % 100 == 0):
+            print('Average com thread loop rate is:', loop_counter / (time.perf_counter() - com_thread_init_time),
+                  'Hz')
 
 
 
