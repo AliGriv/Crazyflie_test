@@ -12,7 +12,7 @@ class Trajectory_Planner:
         trajType = 2 #set to 1 for set points and to 2 for smooth polynomials.
         phase = 0 
 
-        setPointCoordinates = [[0,0,0,0], [0,0,1.5,2], [0,0,1.5,45] , [0,0,0,3]] # The sequence of coordinates for the leader copter to get to at a certain time, [x,y,z, Time] all in the world frame!
+        setPointCoordinates = [[0,0,0,0], [0,0,1.5,5], [0,0,1.5,10], [0,0,0,5]] # The sequence of coordinates for the leader copter to get to at a certain time, [x,y,z, Time] all in the world frame!
                                                                          # NOTE: the initial coordinate of the leader is 0 0 0.
         coffsX = []
         coffsY = []

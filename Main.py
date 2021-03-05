@@ -33,7 +33,7 @@ def receiveRigidBodyFrame(frameID, pos, orient,
     if (frameID == 3):
         payloadPose = [pos[0], -pos[2], pos[1], orient[0], orient[1], orient[2], orient[3]]
     else:
-        index = frameID - 4
+        index = frameID - 5
         tempPos = [pos[0], -pos[2], pos[1]]  # To transform the camera frame to the inertial frame
         positions[index] = tempPos
         orientations[index] = orient
@@ -201,9 +201,9 @@ def comThread_run():
         else:
             break
         loop_counter = loop_counter + 1
-        if (loop_counter % 100 == 0):
-            print('Average com thread loop rate is:', loop_counter / (time.perf_counter() - com_thread_init_time),
-                  'Hz')
+        # if (loop_counter % 100 == 0):
+        #     print('Average com thread loop rate is:', loop_counter / (time.perf_counter() - com_thread_init_time),
+        #           'Hz')
 
 
 

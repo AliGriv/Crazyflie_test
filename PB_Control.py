@@ -4,9 +4,12 @@ import time
 
 class PB_Control():
     "This is an implementation of a high-level position controller"
-    kPos = [15*[0.12,0.15,0.09,0.12,0.12,0.07]] #[[kpx, kpy, kpz, kdx, ...], [], ...]. This list includes the PD gains of all copters as well as the nominal gravity compensating thrust. Each copter gains are given in a sublist.
+    kPos = [40*[0.35,0.35,0.9,0.15,0.15,0.2]] #[[kpx, kpy, kpz, kdx, ...], [], ...]. This list includes the PD gains of all copters as well as the nominal gravity compensating thrust. Each copter gains are given in a sublist.
                        # Kp, Kd, Throttle_bias. Exp: 0.3 is mapped to around 1400 in RC commands. [[0.6,0.4,0.6,0.4,0.35,0.13], [0.6,0.4,0.6,0.4,0.5,0.2], [0.6,0.4,0.6,0.4,0.5,0.2]]
-    Throttle_bias = 0.55 #(0 to 1) percentage throttle
+    Throttle_bias = 0.45 #(0 to 1) percentage throttle
+    # kPos = [40*[0.35,0.35,0.9,0.15,0.15,0.2]] #[[kpx, kpy, kpz, kdx, ...], [], ...]. This list includes the PD gains of all copters as well as the nominal gravity compensating thrust. Each copter gains are given in a sublist.
+    #                    # Kp, Kd, Throttle_bias. Exp: 0.3 is mapped to around 1400 in RC commands. [[0.6,0.4,0.6,0.4,0.35,0.13], [0.6,0.4,0.6,0.4,0.5,0.2], [0.6,0.4,0.6,0.4,0.5,0.2]]
+    # Throttle_bias = 0.55 #(0 to 1) percentage throttle
     yawKp = 0.1  #1/sec
     maxYawRate = 1 #rad/sec
     maxRoll = math.pi/4
