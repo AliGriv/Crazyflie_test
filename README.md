@@ -1,7 +1,7 @@
 # Crazyflie_test
 This is a project to fly crazyflie drone(s) autonomously, using Optitrack Motive motion capture system.
 The code is meant to be run on Ubuntu 16.04. However, using NatNetClient_Old.py and corrections to "COM" port names in the Main.py should lead to the correct version for Windows-based usage.
-The project is currently under development. The control algorithm is based on [Keyvan Mohammadi's paper](https://ieeexplore.ieee.org/abstract/document/8593952). 
+The project is currently under development and probably has not been cleaned or a few bugs may still exist. The control algorithm is based on [Keyvan Mohammadi's paper](https://ieeexplore.ieee.org/abstract/document/8593952). 
 ## Prequisites
 1. [Crazyflie Python Library](https://github.com/bitcraze/crazyflie-lib-python) 
 2. SciPy library
