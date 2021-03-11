@@ -120,8 +120,9 @@ class NatNetClient:
 
     # Send information to any listener.
     if self.rigidBodyListener is not None:
-      self.rigidBodyListener(markerCount, pos, rot, trackingValid)
+      # self.rigidBodyListener(markerCount, pos, rot, trackingValid)
       # self.rigidBodyListener(rb_id, pos, rot, trackingValid)
+      self.rigidBodyListener(rb_id, markerCount, pos, rot, trackingValid)
 
     return offset
 
