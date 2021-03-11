@@ -4,7 +4,7 @@ import time
 
 class PB_Control():
     "This is an implementation of a high-level position controller"
-    kPos = [40*[0.35,0.35,0.9,0.15,0.15,0.2]] #[[kpx, kpy, kpz, kdx, ...], [], ...]. This list includes the PD gains of all copters as well as the nominal gravity compensating thrust. Each copter gains are given in a sublist.
+    kPos = [40*[0.35,0.35,0.9,0.15,0.15,0.2], 40*[0.35,0.35,0.9,0.15,0.15,0.2]] #[[kpx, kpy, kpz, kdx, ...], [], ...]. This list includes the PD gains of all copters as well as the nominal gravity compensating thrust. Each copter gains are given in a sublist.
                        # Kp, Kd, Throttle_bias. Exp: 0.3 is mapped to around 1400 in RC commands. [[0.6,0.4,0.6,0.4,0.35,0.13], [0.6,0.4,0.6,0.4,0.5,0.2], [0.6,0.4,0.6,0.4,0.5,0.2]]
     Throttle_bias = 0.45 #(0 to 1) percentage throttle
     # kPos = [40*[0.35,0.35,0.9,0.15,0.15,0.2]] #[[kpx, kpy, kpz, kdx, ...], [], ...]. This list includes the PD gains of all copters as well as the nominal gravity compensating thrust. Each copter gains are given in a sublist.
@@ -23,7 +23,7 @@ class PB_Control():
     # Commands to be sent to MSP rxThread
     # MAX_THROTTLE_MSP = 2000
     # MIN_THROTTLE_MSP = 1000
-    MAX_THROTTLE_CF = 65000
+    MAX_THROTTLE_CF = 60000
     MIN_THROTTLE_CF = 20000
     # RPY_OFFSET   = 1500
     throttleCF = []
@@ -111,7 +111,7 @@ class PB_Control():
         return variable
     
     def map_commands(self):
-        " This maps the commands to what clean-flight is expecting to receive"
+        " This maps the commands to what crazyflie is expecting to receive"
         for i in range (len(self.throttleCF)):
             self.throttleCF[i] = int(self.throttle[i] * (self.MAX_THROTTLE_CF - self.MIN_THROTTLE_CF) + self.MIN_THROTTLE_CF) # This is mapped to an RC command in the range of 1100 to 2000.
             # self.rollCF[i] = int(self.roll[i] * (180 / math.pi)) # This is in decimal degrees and is half of the roll command since it gets multiplied by a factor of 2 in cleanflight
