@@ -19,3 +19,5 @@ def receiveNewFrame( frameNumber, markerSetCount, unlabeledMarkersCount, rigidBo
                     labeledMarkerCount, latency, timecode, timecodeSub, timestamp, isRecording, trackedModelsChanged ):
     pass
 ```
+## Using the codes
+1. Number of gains in ```kPos``` in [PB_Control.py](PB_Control.py), ```xOffsets``` and ```yOffsets``` in [Trajectory_Planner](Trajectory_Planner.py), ```numCopters``` in [Main](Main.py) for single-drone or in [Main_multi_test](Main_multi_test.py) must be modified accordingly. 
