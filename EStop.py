@@ -1,13 +1,16 @@
 import serial
 import time
 import struct
+import subprocess
+import platform
 class EStop:
 		
 		armingState = 0;
 		noDataCount = 0;
 
 		def __init__(self, port = 'COM3', baudrate = 115200):
-
+			if (platform.system() == 'Linux'):
+				subprocess.call(['sudo', 'chmod', '777', port])
 			self.ser_EStop = serial.Serial(             #Set up connection from Flight controller to linux machine
 				port=port,
 				baudrate=baudrate,
