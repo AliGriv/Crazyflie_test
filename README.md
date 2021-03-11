@@ -9,12 +9,11 @@ The project is currently under development and probably has not been cleaned or 
 4. Setup Ethernet connection using LAN cable between Ubuntu and Windows (which has Motive). See [this video](https://youtu.be/5e0sMf48cBk).
 ## Other useful notes:
 1. To run Main.py on Ubuntu, use the current NatNetClient.py and pay specific attention to the NatNet Version. For example, with our device we had to use version 2.9.0.0.
-
 ``` optitrackThread                   = NatNetClient(ver=(2, 9, 0, 0), quiet=True) ```
-
 2. In our setup, an Emergency-Stop  button was used which was defined in ```EStop_failsafe = EStop('/dev/ttyUSB0', 115200)```. In windows, it will be defined as ```EStop_failsafe = EStop('COM5', 115200) ```
 
-3. The callback function is different for Windows-based code. Use the following in your Main.py:
+3. In our setup, for experimental purposes the first rigid-body (or the one with three marker) is assumed to be the payload, at least for now. Please see the definition of ```receiveRigidBodyFrame``` function.
+4. The callback function is different for Windows-based code. Use the following in your Main.py:
 ```
 def receiveNewFrame( frameNumber, markerSetCount, unlabeledMarkersCount, rigidBodyCount, skeletonCount,
                     labeledMarkerCount, latency, timecode, timecodeSub, timestamp, isRecording, trackedModelsChanged ):
