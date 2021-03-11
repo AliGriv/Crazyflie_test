@@ -111,7 +111,9 @@ if __name__ == '__main__':
     for i in available:
         print(i[0])
 
-    if len(available) > 0:
-        le = MotorRampExample(available[0][0])
-    else:
-        print('No Crazyflies found, cannot run example')
+    le = MotorRampExample('radio://0/80/2M/E7E7E7E7E6')
+
+    # if len(available) > 0:
+    #     le = MotorRampExample(available[0][0])
+    # else:
+    #     print('No Crazyflies found, cannot run example')

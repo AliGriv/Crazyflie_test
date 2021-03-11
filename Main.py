@@ -291,6 +291,7 @@ class crazy_command:
 ############
 if (__name__ == '__main__'):
     numCopters = 1
+    uri = 'radio://0/80/2M/E7E7E7E7E6'
     positions = []
     orientations = []
     trackingFlags = []
@@ -352,16 +353,20 @@ if (__name__ == '__main__'):
         print(i[0])
 
     le = []
-    if len(available) > 0:
-        # le = crazy_command(available[0][0])
-        for i in range(len(available)):
-            le.append(crazy_command(available[i][0]))
-        comThread = Thread(target = comThread_run)  #Thread to communicate with the copters. (Send commands only)
-        comThread.start()
-        print("comThread is supposed to run now :|")
-    else:
-        print('No Crazyflies found, cannot run example')
+    # if len(available) > 0:
+    #     # le = crazy_command(available[0][0])
+    #     for i in range(len(available)):
+    #         le.append(crazy_command(available[i][0]))
+    #     comThread = Thread(target = comThread_run)  #Thread to communicate with the copters. (Send commands only)
+    #     comThread.start()
+    #     print("comThread is supposed to run now :|")
+    # else:
+    #     print('No Crazyflies found, cannot run example')
 
+    le.append(crazy_command(uri))
+    comThread = Thread(target=comThread_run)  # Thread to communicate with the copters. (Send commands only)
+    comThread.start()
+    print("comThread is supposed to run now :|")
     
     # Thread(target = CF_command).start()
     
