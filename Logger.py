@@ -5,7 +5,8 @@ import csv
 import plotly
 import plotly.graph_objs as go
 import time
-
+import subprocess
+import platform
 from math import *
 
 from Filter import Filter
@@ -73,11 +74,14 @@ class Logger():
 			)
 
 			traces.append(tempTrace)
-
+		if (platform.system() == 'Linux'):
+			subprocess.call(['sudo', 'chmod', '777', plotName+".html"])
 		plotly.offline.plot(traces, filename=plotName+".html")
 
 	def saveDataToFile(self):
-		with open(self.fileName , 'w') as f: 				 # Open file for appending a new line of data	
+		with open(self.fileName , 'w') as f:
+			if (platform.system() == 'Linux'):
+				subprocess.call(['sudo', 'chmod', '777', self.fileName])# Open file for appending a new line of data
 			writer   = csv.writer(f, delimiter='\t', lineterminator='\n')  # Writer will separate data with tabs
 			writer.writerow(self.varNames)									# Write header to first row (list of variable names)
 
