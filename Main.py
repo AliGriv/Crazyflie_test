@@ -72,7 +72,6 @@ def mainThread_run():
                 for i in range(numCopters):
                     commandsToGoTemp.append(controller.mappedCommands[i])
                 commandsToGo = commandsToGoTemp
-                # CF_command(commandsToGo)
                 # time.sleep(0.005)
                 # print(commandsToGo)
                 #### Log:1 Logger must be pasted here
@@ -113,7 +112,6 @@ def mainThread_run():
             for i in range (numCopters):
                 commandsToGoTemp.append([ZERO_ROLL, ZERO_PITCH, ZERO_THROTTLE, ZERO_YAW_RATE])
             commandsToGo = commandsToGoTemp
-            # CF_command(commandsToGo)
             # time.sleep(0.01)
             #### Log:2
             #Saving data to file and generating plots
@@ -177,18 +175,7 @@ def comThread_run():
 
 
 
-def CF_command(commandsToGo):
-    # global commandsToGo
-    # print(commandsToGo)
-    roll = commandsToGo[0][0]
-    pitch = commandsToGo[0][1]
-    yawrate = commandsToGo[0][3]
-    thrust = commandsToGo[0][2]
-    # print(roll, pitch, yawrate, thrust)
 
-    le._cf.commander.send_setpoint(roll, pitch, yawrate, thrust)
-    # print(thrust)
-#     #time.sleep(0.01)
 class crazy_command:
     """Example that connects to a Crazyflie and send command to the motors and
     the disconnects"""
@@ -329,8 +316,7 @@ if (__name__ == '__main__'):
     # comThread = Thread(target=comThread_run)  # Thread to communicate with the copters. (Send commands only)
     # comThread.start()
     # print("comThread is supposed to run now :|")
-    
-    # Thread(target = CF_command).start()
+
     
     mainThread = Thread(target = mainThread_run)#The main thread which runs sensor, trajectory planner, and controller modules.
     mainThread.start()                          #Start up thread to close the feed-back control loop
