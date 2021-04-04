@@ -1,8 +1,11 @@
 import serial
 import time
 import struct
-import subprocess
 import platform
+
+if (platform.system() == 'Linux'):
+	import subprocess
+
 class EStop:
 		
 		armingState = 0;

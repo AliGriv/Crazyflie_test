@@ -4,8 +4,14 @@ import time
 
 class PB_Control():
     "This is an implementation of a high-level position controller"
-    kPos = [40*[0.35,0.35,0.9,0.15,0.15,0.2], 40*[0.35,0.35,0.9,0.15,0.15,0.2]] #[[kpx, kpy, kpz, kdx, ...], [], ...]. This list includes the PD gains of all copters as well as the nominal gravity compensating thrust. Each copter gains are given in a sublist.
+    kPos = [[0.35,0.35,1.2,0.15,0.15,0.2]] #[[kpx, kpy, kpz, kdx, ...], [], ...]. This list includes the PD gains of all copters as well as the nominal gravity compensating thrust. Each copter gains are given in a sublist.
                        # Kp, Kd, Throttle_bias. Exp: 0.3 is mapped to around 1400 in RC commands. [[0.6,0.4,0.6,0.4,0.35,0.13], [0.6,0.4,0.6,0.4,0.5,0.2], [0.6,0.4,0.6,0.4,0.5,0.2]]
+
+    scale = 1.1;
+    for i in range(len(kPos)):
+        for j in range(len(kPos[i])):
+            kPos[i][j] = scale * kPos[i][j]
+    print(kPos)
     Throttle_bias = 0.45 #(0 to 1) percentage throttle
     # kPos = [40*[0.35,0.35,0.9,0.15,0.15,0.2]] #[[kpx, kpy, kpz, kdx, ...], [], ...]. This list includes the PD gains of all copters as well as the nominal gravity compensating thrust. Each copter gains are given in a sublist.
     #                    # Kp, Kd, Throttle_bias. Exp: 0.3 is mapped to around 1400 in RC commands. [[0.6,0.4,0.6,0.4,0.35,0.13], [0.6,0.4,0.6,0.4,0.5,0.2], [0.6,0.4,0.6,0.4,0.5,0.2]]
@@ -89,10 +95,11 @@ class PB_Control():
                 roll = math.asin(uy/throttle)
                 pitch = -math.atan(ux/uz)
         else:
+
                 n_roll = (math.tan(yaw/2)**2 * throttle - (ux**2 * math.tan(yaw/2)**4 - 2 * ux**2 * math.tan(yaw/2)**2 + 4 * uy**2 * math.tan(yaw/2)**2 + 2 * uz**2 * math.tan(yaw/2)**2 + uz**2 * math.tan(yaw/2)**4 + ux**2 + uz**2 + 4 * ux * uy * math.tan(yaw/2) - 4 * ux * uy * math.tan(yaw/2)**3)**(1/2) + throttle)
                 d_roll = (uy * math.tan(yaw/2)**2 - uy + 2 * ux * math.tan(yaw/2))
                 if abs(d_roll) < epsilon:
-                                roll = 0
+                        roll = 0
                 else:
                         roll = 2 * math.atan(n_roll/d_roll)
                 # Finding pitch
@@ -102,7 +109,14 @@ class PB_Control():
                         pitch = 0
                 else:
                         pitch = -2 * math.atan(n_pitch/d_pitch)
-            
+                # print("n_roll")
+                # print(n_roll)
+                # print("d_roll")
+                # print(d_roll)
+                # print("n_pitch")
+                # print(n_pitch)
+                # print("d_pitch")
+                # print(d_pitch)
         return [throttle, roll, pitch]
         
     def saturate(self, variable, maxVal):

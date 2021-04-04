@@ -12,13 +12,13 @@ class Trajectory_Planner:
         trajType = 2 #set to 1 for set points and to 2 for smooth polynomials.
         phase = 0 
 
-        setPointCoordinates = [[0,0,0,0], [0,0,1.5,5], [0,-0.9,1.5,5], [0,-0.9,1.5,5], [0,-0.9,0,5]] # The sequence of coordinates for the leader copter to get to at a certain time, [x,y,z, Time] all in the world frame!
+        setPointCoordinates = [[0,0,0,0], [0,0,1.5,5], [0,0.0,1.5,25], [0,0.0,0.0,5]] # The sequence of coordinates for the leader copter to get to at a certain time, [x,y,z, Time] all in the world frame!
                                                                          # NOTE: the initial coordinate of the leader is 0 0 0.
         coffsX = []
         coffsY = []
         coffsZ = []
-        xOffsets = [0.0, 1.2] # X coordinates of all copters w.r.t the leader [0, 1.2, 0.5]
-        yOffsets = [0.0, 0.0] # Y coordinates of all copters w.r.t the leader   [0, 0, -0.8]
+        xOffsets = [0.0] # X coordinates of all copters w.r.t the leader [0, 1.2, 0.5]
+        yOffsets = [0.0] # Y coordinates of all copters w.r.t the leader   [0, 0, -0.8]
         errors = []    # [[],[], ...]. This is a list of lists containing the position/velocity errors of each copter.
         desiredPose  = [0, 0, 0]  # Desired position of the leader copter
         desiredVel   = [0, 0, 0]  # Desired position of the leader copter

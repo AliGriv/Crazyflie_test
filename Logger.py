@@ -5,11 +5,15 @@ import csv
 import plotly
 import plotly.graph_objs as go
 import time
-import subprocess
+
 import platform
 from math import *
 
 from Filter import Filter
+
+
+if (platform.system() == 'Linux'):
+	import subprocess
 
 class Logger():
 
@@ -79,9 +83,10 @@ class Logger():
 		plotly.offline.plot(traces, filename=plotName+".html")
 
 	def saveDataToFile(self):
+		if (platform.system() == 'Linux'):
+			subprocess.call(['sudo', 'chmod', '777', self.fileName])
 		with open(self.fileName , 'w') as f:
-			if (platform.system() == 'Linux'):
-				subprocess.call(['sudo', 'chmod', '777', self.fileName])# Open file for appending a new line of data
+			# Open file for appending a new line of data
 			writer   = csv.writer(f, delimiter='\t', lineterminator='\n')  # Writer will separate data with tabs
 			writer.writerow(self.varNames)									# Write header to first row (list of variable names)
 

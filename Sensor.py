@@ -23,9 +23,9 @@ class Sensor:
     yawFiltered = [] #INTERFACE ATTRIBUTE. Initializes based on camera measuremnts.
     
     ##Filter related##
-    firFilter0 = Velocity_Filter(order = 3, cutoff = 0.05, channelNum = 3) #"Numerical derivation and filtering of the camera measurements"
-    firFilter1 = Velocity_Filter(order = 3, cutoff = 0.05, channelNum = 3) #"Numerical derivation and filtering of the camera measurements"
-    firFilter2 = Velocity_Filter(order = 3, cutoff = 0.05, channelNum = 3) #"Numerical derivation and filtering of the camera measurements"
+    firFilter0 = Velocity_Filter(order = 5, cutoff = 0.05, channelNum = 3) #"Numerical derivation and filtering of the camera measurements"
+    firFilter1 = Velocity_Filter(order = 5, cutoff = 0.05, channelNum = 3) #"Numerical derivation and filtering of the camera measurements"
+    firFilter2 = Velocity_Filter(order = 5, cutoff = 0.05, channelNum = 3) #"Numerical derivation and filtering of the camera measurements"
     nonlinFilterThreshold =  0.1 # m/s
 
     def __init__(self, numCopters):
