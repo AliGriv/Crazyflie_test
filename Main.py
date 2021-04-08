@@ -64,10 +64,7 @@ def mainThread_run():
                 controller.control_allocation(expTime, sensor.yawFiltered,
                                               trajPlanner.errors, trajPlanner.phase, trajPlanner.rampUpDuration, trajPlanner.rampDownDuration)
                 #Set commandsToGo
-                if (expTime > 10 and temp_counter < 3):
-                    print("The rate will drop now")
-                    HZ = 2
-                    temp_counter+=1
+
                 commandsToGoTemp = []
                 for i in range(numCopters):
                     commandsToGoTemp.append(controller.mappedCommands[i])
@@ -125,7 +122,8 @@ def mainThread_run():
                 logger.generatePlots("Position_Copter"+str(i),['posx'+str(i),'posy'+str(i),'posz'+str(i)])
                 logger.generatePlots("Velocity_Copter"+str(i),['velx'+str(i),'vely'+str(i),'velz'+str(i)])
                 logger.generatePlots("Reference_Commands_Copter"+str(i),['rollCmd'+str(i),'pitchCmd'+str(i),'throttleCmd'+str(i),'yawRateCmd'+str(i)])
-                logger.generatePlots("MSP_Commands_Copter"+str(i),['mspRoll'+str(i),'mspPitch'+str(i),'mspThrottle'+str(i),'mspYawRate'+str(i)])
+                logger.generatePlots("Attitude_Commands_Copter"+str(i),['mspRoll'+str(i),'mspPitch'+str(i),'mspYawRate'+str(i)])
+                logger.generatePlots("Thrust Command" +str(i), ['mspThrottle'+str(i)])
                 # debugLogger.generatePlots("Debug_MSP_Commands_Copter"+str(i),['dmspRoll'+str(i),'dmspPitch'+str(i),'dmspThrottle'+str(i),'dmspYawRate'+str(i)])
             for i in range(numCopters):
                 le[i]._close_it()
@@ -247,7 +245,7 @@ class crazy_command:
 ############
 if (__name__ == '__main__'):
     numCopters = 1
-    HZ = 40
+    HZ = 100
     # uri = 'radio://0/80/2M/E7E7E7E7E6'
     uri = 'radio://0/80/2M/'
     positions = []
